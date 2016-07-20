@@ -2,27 +2,39 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.regis.gway.register">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:name=".bean"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <service android:name=".refreshChat" />
+
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".LoginActivity">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Register"/>
+        <activity android:name=".Register" />
+        <activity android:name=".Lister" />
+        <activity android:name=".AddData" />
+
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="7ec9ab87846365fd1f9c559953caea509cdd1c01" />
+
+        <activity android:name=".Lister2" />
+        <activity android:name=".ChatActivity" />
+        <activity android:name=".SyncActivity"></activity>
     </application>
 
 </manifest>

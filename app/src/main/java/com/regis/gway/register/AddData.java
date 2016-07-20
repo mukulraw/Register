@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -20,36 +21,39 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+public class AddData extends AppCompatActivity {
 
-public class Register extends AppCompatActivity {
-
-    private EditText name , email , pass;
-
-
+    private String ADD_DATA = "http://mr-techs.16mb.com/add_data.php";
     private static final int CONNECTION_TIMEOUT=10000;
     private static final int READ_TIMEOUT=15000;
-
+    EditText name , phone , address , date;
+    Button add;
+    String id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register);
+        setContentView(R.layout.activity_add_data);
+        add = (Button)findViewById(R.id.addData);
 
-        name = (EditText)findViewById(R.id.u_name);
-        email = (EditText)findViewById(R.id.u_email);
-        pass = (EditText)findViewById(R.id.u_password);
+        name = (EditText)findViewById(R.id.namer);
+        phone = (EditText)findViewById(R.id.phoner);
+        address = (EditText)findViewById(R.id.addresser);
+        date = (EditText)findViewById(R.id.dater);
 
-        Button register = (Button) findViewById(R.id.register);
 
-        register.setOnClickListener(new View.OnClickListener() {
+
+
+        add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                String nam = name.getText().toString();
-                String emai = email.getText().toString();
-                String pas = pass.getText().toString();
+                String n = name.getText().toString();
+                String p = phone.getText().toString();
+                String a = address.getText().toString();
+                String d = date.getText().toString();
+                String m = getIntent().getExtras().getString("id");
 
-
-                new login(nam , emai , pas).execute();
+                new login(n , a , p , d , m).execute();
 
 
 
@@ -58,24 +62,24 @@ public class Register extends AppCompatActivity {
 
 
 
-
     }
-
 
     private class login extends AsyncTask<Void , Void , Void>
     {
         String result = "";
         HttpURLConnection conn;
-        ProgressDialog pdLoading = new ProgressDialog(Register.this);
+        ProgressDialog pdLoading = new ProgressDialog(AddData.this);
         URL url = null;
 
 
-        String n , e , p;
-        login(String n , String e , String p)
+        String n , a , p ,d , m;
+        login(String n , String e , String p , String d , String m)
         {
             this.n = n;
-            this.e = e;
+            this.a = e;
             this.p = p;
+            this.d = d;
+            this.m = m;
         }
 
 
@@ -95,11 +99,11 @@ public class Register extends AppCompatActivity {
         protected Void doInBackground(Void... params) {
 
 
-            String postURL = "?username=" + n + "&email="+ e +"&password="+ p;
+            //String postURL = "?username=" + n + "&email="+ a +"&password="+ p;
 
             try {
-                String SIGN_UP = "http://mr-techs.16mb.com/register.php";
-                url = new URL(SIGN_UP + postURL);
+
+                url = new URL(ADD_DATA);
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             }
@@ -107,16 +111,18 @@ public class Register extends AppCompatActivity {
                 conn = (HttpURLConnection)url.openConnection();
                 conn.setReadTimeout(READ_TIMEOUT);
                 conn.setConnectTimeout(CONNECTION_TIMEOUT);
-                conn.setRequestMethod("GET");
+                conn.setRequestMethod("POST");
 
 
                 conn.setDoInput(true);
-                //conn.setDoOutput(true);
+                conn.setDoOutput(true);
 
-                /*Uri.Builder builder = new Uri.Builder()
+                Uri.Builder builder = new Uri.Builder()
+                        .appendQueryParameter("mainId", m)
                         .appendQueryParameter("username", n)
-                        .appendQueryParameter("email", e)
-                        .appendQueryParameter("password", p);
+                        .appendQueryParameter("address", a)
+                        .appendQueryParameter("phone", p)
+                        .appendQueryParameter("date", d);
                 String query = builder.build().getEncodedQuery();
 
                 OutputStream os = conn.getOutputStream();
@@ -125,7 +131,7 @@ public class Register extends AppCompatActivity {
                 writer.write(query);
                 writer.flush();
                 writer.close();
-                os.close();*/
+                os.close();
 
                 conn.connect();
 
@@ -159,7 +165,7 @@ public class Register extends AppCompatActivity {
 
             pdLoading.dismiss();
 
-                Toast.makeText(getApplicationContext() , result , Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext() , result , Toast.LENGTH_SHORT).show();
 
             Log.d("asdasdasd" , result);
 
@@ -167,10 +173,18 @@ public class Register extends AppCompatActivity {
 
             if(result.equals("success"))
             {
-                name.setText("");
-                email.setText("");
-                pass.setText("");
+
+                DBHandler db = new DBHandler(getApplicationContext());
+                userDataBean item = new userDataBean();
+                item.setUserId(m);
+                item.setName(n);
+                item.setAddress(a);
+                item.setPhone(p);
+                item.setDate(d);
+
+                db.insertUser(item);
             }
+
 
 
 

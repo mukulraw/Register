@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_add_data"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.regis.gway.register.AddData">
+
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:orientation="vertical"
+       android:layout_height="match_parent">
+
+
+       <EditText
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:hint="name"
+           android:id="@+id/namer"
+           />
+       <EditText
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:hint="Phone"
+           android:id="@+id/phoner"
+           />
+       <EditText
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:hint="Address"
+           android:id="@+id/addresser"
+           />
+
+       <EditText
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:hint="Date"
+           android:id="@+id/dater" />
+
+       <Button
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_margin="10dp"
+           android:id="@+id/addData"
+           android:text="ADD"
+           android:background="@color/colorAccent"
+           android:textColor="#FFFFFF"
+           />
+
+
+   </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>
