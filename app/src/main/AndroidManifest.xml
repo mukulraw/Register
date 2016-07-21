@@ -34,7 +34,9 @@
 
         <activity android:name=".Lister2" />
         <activity android:name=".ChatActivity" />
-        <activity android:name=".SyncActivity"></activity>
+        <activity android:name=".SyncActivity" />
+        <activity android:name=".GroupChatList" />
+        <activity android:name=".GroupChatRoom"></activity>
     </application>
 
 </manifest>

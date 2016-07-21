@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_group_chat_room"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.regis.gway.register.GroupChatRoom">
+
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/group_chat_list"
+        android:transcriptMode="alwaysScroll"
+        android:layout_margin="10dp"
+        android:stackFromBottom="true"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="10dp"
+        android:headerDividersEnabled="false"
+        android:footerDividersEnabled="false"
+        android:clipToPadding="false"
+        android:paddingBottom="45dp"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:weightSum="3"
+        android:background="#ffffff"
+        android:orientation="horizontal"
+
+        >
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:id="@+id/group_message"
+            android:layout_weight="2"
+            android:hint="Message"
+
+
+            />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/send_group_message"
+            android:layout_weight="1"
+            android:text="SEND"
+
+
+            />
+    </LinearLayout>
+
+</RelativeLayout>

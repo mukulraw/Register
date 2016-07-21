@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -29,6 +31,7 @@ public class Lister2 extends AppCompatActivity {
     List2Adapter adapter;
     private static final int CONNECTION_TIMEOUT=10000;
     private static final int READ_TIMEOUT=15000;
+    Button group;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,9 +40,21 @@ public class Lister2 extends AppCompatActivity {
 
         grid = (RecyclerView)findViewById(R.id.lister2);
 
+        group = (Button)findViewById(R.id.group);
 
 
-        startService(new Intent(this , refreshChat.class));
+      //  startService(new Intent(this , refreshChat.class));
+
+
+        group.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent i = new Intent(getBaseContext() , GroupChatList.class);
+                startActivity(i);
+
+            }
+        });
 
 
         layoutManager = new GridLayoutManager(this , 1);

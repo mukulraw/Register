@@ -197,13 +197,15 @@ public class LoginActivity extends AppCompatActivity {
 
             String status = null, id = null;
 
+            String name = null;
+
             pdLoading.dismiss();
 
             try {
                 JSONObject obj = new JSONObject(result);
                 status = obj.getString("status");
                 id = obj.getString("userId");
-
+                name = obj.getString("username");
                 Log.d("asdasdasd" , status);
                 Log.d("asdasdasd" , id);
 
@@ -227,6 +229,7 @@ public class LoginActivity extends AppCompatActivity {
                 edit2.commit();
 
                 b.id = id;
+                b.name = name;
 
 
 
