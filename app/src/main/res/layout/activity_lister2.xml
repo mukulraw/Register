@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_lister2"
     android:layout_width="match_parent"
+    android:background="#80ffffff"
     android:layout_height="match_parent"
     tools:context="com.regis.gway.register.Lister2">
 

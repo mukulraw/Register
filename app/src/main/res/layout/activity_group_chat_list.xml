@@ -5,6 +5,7 @@
     android:id="@+id/activity_group_chat_list"
     android:layout_width="match_parent"
     android:orientation="vertical"
+    android:background="#80ffffff"
     android:layout_height="match_parent"
     tools:context="com.regis.gway.register.GroupChatList">
 
